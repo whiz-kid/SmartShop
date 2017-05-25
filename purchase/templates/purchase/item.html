@@ -1,0 +1,78 @@
+{% extends 'purchase/base.html' %}
+{% block title %}Welcome to SmartShop{% endblock %}
+
+
+{% block body %}
+<section class="container" id="c1">
+    <div class="page-header">
+        <h2 style="color:darkred; font-size:50px;">Books :</h2>
+    </div><br>
+    {% for item in category.x1.item_set.all %}
+        <div class="col-md-4">
+            <figure>
+                <a href="{% url 'purchase:details' item.id %}">
+                    <img src="{{ item.logo }}" alt="Logo" style="height:400px;width:300px;" class="img-responsive">
+                </a>
+                 <figcaption class="thumbnail" style="width:300px;">
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="{% url 'purchase:add' item.id %}">
+                        <span class="glyphicon glyphicon-shopping-cart " style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="">
+                        <span class="glyphicon glyphicon-thumbs-up" style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="">
+                        <span class="glyphicon glyphicon-star-empty" style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                    <a href="">
+                        <span style="font-size:20px">Quic-Details</span>
+                    </a>                     
+                </figcaption>
+                
+            </figure>
+            
+            
+        </div>
+    {% endfor %}
+</section>
+
+
+<section class="container" id="c3">
+    <div class="page-header">
+        <h2 style="color:darkred; font-size:50px;">Computers & Accessories :</h2>
+    </div><br>
+    {% for item in category.x3.item_set.all %}
+        <div class="col-md-4">
+            <figure>
+                <a href="{% url 'purchase:details' item.id %}">
+                    <img src="{{ item.logo }}" alt="Logo" style="height:400px;width:300px;" class="img-responsive">
+                </a>
+                 <figcaption class="thumbnail" style="width:300px;">
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="">
+                        <span class="glyphicon glyphicon-shopping-cart " style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="">
+                        <span class="glyphicon glyphicon-thumbs-up" style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="">
+                        <span class="glyphicon glyphicon-star-empty" style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                    <a href="">
+                        <span style="font-size:20px">Quic-Details</span>
+                    </a>                     
+                </figcaption>
+                
+            </figure>
+            
+            
+        </div>
+    {% endfor %}
+</section>
+{% endblock %}

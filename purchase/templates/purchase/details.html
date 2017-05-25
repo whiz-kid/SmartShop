@@ -1,0 +1,13 @@
+{% extends 'purchase/base.html' %}
+{% block title %}Welcome to SmartShop{% endblock %}
+
+{% block body %}
+
+<div class="col-md-4">
+    <p> {{item.category}} </p>
+    <p> {{item.name}} </p>
+    <p> {{item.price}} </p>
+    <img src="{{ item.logo }}" alt="Logo">
+</div>
+
+{% endblock %}
