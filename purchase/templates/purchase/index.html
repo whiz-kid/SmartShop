@@ -1,9 +1,13 @@
 {% extends 'purchase/base.html' %}
+{% block script %}
+<script>
+	
+</script>
+{% endblock %}
 
 {% block body %}
     <div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
 				<div id="mycarousel" class="carousel slide " data-ride="carousel" style="border:6px solid black">
 
 					<ol class="carousel-indicators">
@@ -36,13 +40,93 @@
 					    <span class="glyphicon glyphicon-chevron-right"></span>
 					    <span class="sr-only">Next</span>
 			  		</a>
-			
-				</div>
-
 			</div>
 
-		</div><br><br>
-	</div
+		</div>
+	</div><br><br><br><br>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="page-header col-md-4">
+			<h2 style="font-family:monospace; color:maroon">Recommendations :</h2>
+		</div>
+	</div>
+	<div class="row">
+
+
+		<div class="carousel slide" id="mycarousel1" data-ride="carousel"  data-interval="2000">
+
+			<div class="carousel-inner">
+
+				<div class="item active">
+					<div class="row">
+						<div class="col-xs-2">
+							<a href="{% url 'purchase:details' 1 %}">">
+								<img src="../../static/purchase/images/books/wingsoffire.jpg"
+								 style="height:200px;width:140px;">
+							</a>
+						</div>
+						<div class="col-xs-2">
+							<a href="{% url 'purchase:details' 9 %}">
+								<img src="../../static/purchase/images/compandaccess/2.jpg"
+								 style="height:200px;width:140px;">
+							</a>
+						</div>
+						<div class="col-xs-2">
+							<a href="{%  url 'purchase:details' 5 %}">
+								<img src="../../static/purchase/images/books/thebookthief.jpg"
+								 style="height:200px;width:140px;">
+							</a>
+						</div>
+						<div class="col-xs-2">
+							<a href="{%  url 'purchase:details' 2 %}">
+								<img src="../../static/purchase/images/books/animalfarm.jpg"
+								 style="height:200px;width:140px;">
+							</a>
+						</div>
+						<div class="col-xs-2">
+							<a href="{%  url 'purchase:details' 8 %}">
+								<img src="../../static/purchase/images/compandaccess/3.jpg"
+								 style="height:200px;width:140px;">
+							</a>
+						</div>
+						<div class="col-xs-2">
+							<a href="{%  url 'purchase:details' 7 %}">
+								<img src="../../static/purchase/images/compandaccess/4.jpg"
+								 style="height:200px;width:140px;">
+							</a>
+						</div>
+					</div>
+				</div>
+					
+				<div class="item">
+					{% for item in items %}
+					<div class="col-xs-2">
+						{% if forloop.counter < 7 %}
+						<a href="{% url 'purchase:details' item.id %}">
+							<img src="{{ item.logo }}" alt="" style="height:200px;width:140px;">
+						</a>
+						{% endif %}
+					</div>	
+					{% endfor %}
+				</div>
+				
+			</div>
+
+			<a href="#mycarousel1" class="carousel-control left" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					<span class="sr-only">Previous</span>
+			</a>
+			<a href="#mycarousel1" class="carousel-control right" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					<span class="sr-only">Next</span>
+			</a>	
+		</div>
+
+
+	</div>
+</div>
+	
 
 {% endblock %}
 

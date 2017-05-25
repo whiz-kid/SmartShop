@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.contrib.auth.decorators import login_required
 
-app_name = 'purchase'
+app_name = 'purchase' 
 
 urlpatterns = [
     url(r'^index/$',views.IndexView.as_view(),name='index'),
@@ -11,9 +11,11 @@ urlpatterns = [
     url(r'^login/$',views.UserLoginView.as_view(),name='login'),
     #url(r'^logout/$',logout,{'next_page':'/index'},name='logout'),
     url(r'^logout/$',views.UserLogoutView.as_view(),name='logout'),
-    url(r'^user/(?P<pk>[0-9]+)/$',login_required(views.UserView.as_view(),login_url='purchase:login'),name='user'),
+   # url(r'^user/(?P<pk>[0-9]+)/$',login_required(views.UserView.as_view(),login_url='purchase:login'),name='user'),
     url(r'^item/$',views.ItemView.as_view(),name='item'),
     url(r'^item/(?P<pk>[0-9]+)/details/$',views.DetailView.as_view(),name='details'),
     url(r'^item/(?P<pk>[0-9]+)/add/$',views.AddToCart.as_view(),name='add'),
+    url(r'^user/(?P<pk>[0-9]+)/details/$',views.CartDetailsView.as_view(),name='cartdetails'),
+    
 ]
 

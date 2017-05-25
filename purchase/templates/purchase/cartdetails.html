@@ -1,0 +1,33 @@
+{% extends 'purchase/base.html' %}
+{% block title %}Welcome to Your Cart{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <h3 style="color:darkred; font-size:40px">Welcome to Your Cart, {{user.username}}</h3>
+        <h4 style="color:chartreuse">Items in your cart&nbsp;&nbsp;&nbsp;
+            <span class="glyphicon glyphicon-menu-down"></span>
+        </h4>
+    </div> 
+    <div class="list-group">
+
+        {% for item in user.cart_set.all %}
+
+        <div class="list-group-item list-group-item-info">
+            <div class="col-md-2">
+                <img src="../{{ item.product.logo }}" alt="Logo" style="height:50px;width:50px">
+            </div>
+            <div class="col-md 10">
+                <p>{{item.product.name}}</p>
+                <p>Price {{item.product.price}}</p>
+            </div> 
+        </div>
+
+        <br>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

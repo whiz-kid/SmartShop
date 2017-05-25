@@ -10,13 +10,14 @@ from django.contrib.auth.views import login,logout
 from .models import Item,Category,Cart
 
 
-class IndexView(generic.TemplateView):
+class IndexView(generic.ListView):
 
     template_name = 'purchase/index.html'
+    context_object_name = 'items'
 
-class UserView(generic.TemplateView):
+    def get_queryset(self):
+        return Item.objects.all()
 
-    template_name = 'purchase/index.html'
 
 class UserLoginView(generic.View):
     template_name = 'purchase/login.html'
@@ -33,7 +34,7 @@ class UserLoginView(generic.View):
         user = authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
-            return redirect('purchase:user',pk=request.user.pk)
+            return redirect('purchase:index')
         return render(request,self.template_name,{'form':form})
 
 class UserLogoutView(generic.View):
@@ -66,7 +67,7 @@ class UserFormView(generic.View):
             if user is not None:
                 
                 login(request,user)
-                return redirect('purchase:user',pk=request.user.pk)
+                return redirect('purchase:index')
 
         
         return render(request,self.template_name,{'form':form})
@@ -98,3 +99,6 @@ class AddToCart(generic.View):
         c = Cart(customer=name,product=item)
         c.save()
         return redirect('purchase:item')
+
+class CartDetailsView(generic.TemplateView):
+    template_name = 'purchase/cartdetails.html'

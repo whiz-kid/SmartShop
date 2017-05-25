@@ -6,10 +6,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'purchase/css/bootstrap.css' %}"/>
     <script src="{% static 'purchase/js/jquery.js' %}"></script>
     <script src="{% static 'purchase/js/bootstrap.js' %}"></script>
+    {% block script %}<script></script>{% endblock %}
+    {% block style %}
     <style>
-        body{
-            background: url('../../static/purchase/images/cool.jpg')
-        }
         .btn-circle {
             width: 30px;
             height: 30px;
@@ -20,7 +19,26 @@
             border-radius: 15px;
             display: inline-block
         }
+        .bottom-rule{
+				border-bottom: 1px solid lightgray;
+		}
+
+		footer{
+				padding-top: 20px;
+				border-top: 10px solid #332e20;
+				background-color: white;
+			}
+		.footer-section {
+			    margin-bottom: 20px;
+			    padding-bottom: 20px;
+			    border-bottom: 1px solid lightgray;
+ 			}
+ 		.monospaced { 
+ 				font-family: 'Ubuntu Mono', monospaced ; 
+ 			}
+ 		.leg-room { margin-bottom: 20px; padding-bottom: 20px; }
     </style>
+    {% endblock %}
 </head>
 <body>
 
@@ -85,7 +103,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="#">
+                        <a href="{% url 'purchase:cartdetails' user.id %}">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Your Cart
                             {{user.cart_set.count}}
                         </a>
@@ -100,7 +118,8 @@
                             
                             <ul class="dropdown-menu">
                                 <li><a href="#">Hello, {{user.username}}</a></li>
-                                <li><a href="#">Your Cart {{user.cart_set.count}}</a></li>
+                                <li><a href="{% url 'purchase:cartdetails' user.id %}">
+                                    Your Cart {{user.cart_set.count}}</a></li>
                                 <li><a href="#">Settings</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{% url 'purchase:logout' %}">Log Out</a></li>
@@ -128,8 +147,102 @@
     </div>
 </nav>
 
+
 {% block body %}
 {% endblock %}
+
+
+<br><br><br><br><br><br><br><br>
+<footer class="navbar-default">
+			<div class="container">
+				<div class="row bottom rule">
+					
+
+					<div class="col-sm-4 footer-section">
+						<strong>Connect with SmartShop</strong>
+					    <p>Email promotions, news, and information</p>
+					    <form class="form-inline">
+					        <div class="form-group">
+					            <label 
+					                class="sr-only" 
+					                for="inputEmail"
+					            >Email</label>
+					            <input
+					                type="email"
+					                class="form-control"
+					                id="inputEmail"
+					                placeholder="address@example.com"
+					            >
+					         </div>
+					         <button type="submit" class="btn btn-default">Subscribe</button>
+					     </form>
+					</div>
+
+					<div class="col-sm-5 footer-section">
+					    <ul class="list-inline">
+					        <li class="text-uppercase">Customer Service:</li>
+					        <li><a href="#">Returns</a></li>
+					        <li><a href="#">Privacy Policy</a></li>
+					        <li><a href="#">Our Guarantee</a></li>
+					        <li><a href="#">Shipping</a></li>
+					        <li><a href="#">Product Guides</a></li>
+					        <li><a href="#">Customer Care</a></li>
+					    </ul>
+					    <ul class="list-inline">
+					        <li class="text-uppercase">Social Media &amp; Articles:</li>
+					        <li><a href="#">Instagram</a></li>
+					        <li><a href="#">Pinterest</a></li>
+					        <li><a href="#">Twitter</a></li>
+					        <li><a href="#">Facebook</a></li>
+					        <li><a href="#">The Best Journal</a></li>
+					    </ul>
+					    <ul class="list-inline">
+					        <li class="text-uppercase">Events:</li>
+					        <li><a href="#">Hangout April 30</a></li>
+					        <li><a href="#">Makers Faire</a></li>
+					    </ul>
+					</div>
+
+					<div class="col-sm-3">
+					    <address>
+					        <strong>SmartShop</strong><br>
+					        1000 Some Fantastic Place<br>
+					        San Francisco, CA 94103<br>
+					        (123) 456-7890 (phone &amp; text)<br>
+					        <a href="#">Contact Us</a>
+					    </address>
+					</div>
+
+
+				</div>
+
+				<div class="row bottom-rule">
+				    <div class="col-sm-12 ">
+				        <nav class="navbar navbar-default navbar-footer">
+				            <ul class="nav navbar-nav">
+				                <li><a href="#">Customer Care</a></li>
+				                <li><a href="#">Summer Lookbook</a></li>
+				                <li><a href="#">Gift Cards</a></li>
+				                <li><a href="#">About SmartShop</a></li>
+				                <li><a href="#">Careers</a></li>
+				                <li><a href="#">Contact Us</a></li>
+				                <li><a href="#">The Best Journal</a></li>
+				            </ul>
+				        </nav>
+				    </div>
+
+				    <div class="row leg-room">
+					    <div class="col-md-12 text-center">
+					        <h1 class="text-uppercase">SmartShop</h1>
+					        <p class="monospaced">
+					            &copy;2016 SmartShop Company Inc. 
+					            <span class="text-uppercase">All Rights Reserved</span></p>
+					    </div>
+					</div>
+				</div>
+				
+			</div>
+		</footer>
 
 
 </body>
