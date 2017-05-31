@@ -14,20 +14,58 @@
 
         {% for item in user.cart_set.all %}
 
-        <div class="list-group-item list-group-item-info">
-            <div class="col-md-2">
-                <img src="../{{ item.product.logo }}" alt="Logo" style="height:50px;width:50px">
+        <div class="list-group-item col-md-8">
+            <div class="row">
+                <div class="col-md-1">
+                <img src="../{{ item.product.logo }}" alt="Logo" style="height:90px;width:80px">
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <h4>Product Name:</h4>
+                    <p>{{item.product.name}}</p>
+                </div> 
+                <div class="col-md-2 ">
+                    <h4>Price:</h4>
+                    <p>${{item.product.price}}</p>
+                </div> 
+                <div class="col-md-3 col-md-offset-1">
+                    <h4>Date Added:</h4>
+                    <p>{{item.add_date.date}}</p>
+                </div>
+                <div class="col-md-1">
+                    <br>
+                    <a href="{% url 'purchase:deleteitem' item.product_id %}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </div>
             </div>
-            <div class="col-md 10">
-                <p>{{item.product.name}}</p>
-                <p>Price {{item.product.price}}</p>
-            </div> 
         </div>
 
         <br>
         {% endfor %}
 
     </div>
+
+    {% if user.cart_set.all %}
+    <div class="col-md-6 col-md-offset-4">
+         <br> <br>
+        <div class="col-md-3">
+            <a href="{% url 'purchase:emptycart' %}">
+                <button>Empty Cart</button>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="{% url 'purchase:order' %}">
+                <button>Place Order</button>
+            </a>
+        </div>
+    </div>
+    {% else %}
+    <div class="container-fluid">
+        <p>Oops ! No item in your Cart.</p><br>
+        <p>Click thi <a href="{% url 'purchase:item' %}">Link</a> to begin your shopping</p>        
+    </div>
+    {% endif %}
+
 </div>
 
 {% endblock %}

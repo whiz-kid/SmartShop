@@ -1,7 +1,14 @@
 {% extends 'purchase/base.html' %}
 {% block title %}Welcome to SmartShop{% endblock %}
 
-
+{% block script %}
+<script>
+    function changeIcon(){
+        document.getElementById("icon").classList.remove = "glyphicon glyphicon-star-empty";
+        document.getElementById("icon").classList.add = "glyphicon glyphicon-star";
+    }
+</script>
+{% endblock %}
 {% block body %}
 <section class="container" id="c1">
     <div class="page-header">
@@ -19,12 +26,12 @@
                         <span class="glyphicon glyphicon-shopping-cart " style="font-size:30px;"></span>
                      </a>
                      &nbsp;&nbsp;&nbsp;
-                     <a href="">
+                     <a href="{% url 'purchase:like' item.id %}">
                         <span class="glyphicon glyphicon-thumbs-up" style="font-size:30px;"></span>
                      </a>
                      &nbsp;&nbsp;&nbsp;
-                     <a href="">
-                        <span class="glyphicon glyphicon-star-empty" style="font-size:30px;"></span>
+                     <a href="{% url 'purchase:favorite' item.id %}">
+                        <span class="glyphicon glyphicon-star-empty" style="font-size:30px; "></span>
                      </a>
                      &nbsp;&nbsp;&nbsp;
                     <a href="">
@@ -56,11 +63,48 @@
                         <span class="glyphicon glyphicon-shopping-cart " style="font-size:30px;"></span>
                      </a>
                      &nbsp;&nbsp;&nbsp;
-                     <a href="">
+                     <a href="{% url 'purchase:like' item.id %}">
                         <span class="glyphicon glyphicon-thumbs-up" style="font-size:30px;"></span>
                      </a>
                      &nbsp;&nbsp;&nbsp;
-                     <a href="">
+                     <a href="{% url 'purchase:favorite' item.id %}">
+                        <span class="glyphicon glyphicon-star-empty" style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                    <a href="">
+                        <span style="font-size:20px">Quick-Details</span>
+                    </a>                     
+                </figcaption>
+                
+            </figure>
+            
+            
+        </div>
+    {% endfor %}
+</section>
+
+
+<section class="container" id="c8">
+    <div class="page-header">
+        <h2 style="color:darkred; font-size:50px;">Shoes :</h2>
+    </div><br>
+    {% for item in category.x8.item_set.all %}
+        <div class="col-md-4">
+            <figure>
+                <a href="{% url 'purchase:details' item.id %}">
+                    <img src="{{ item.logo }}" alt="Logo" style="height:400px;width:300px;" class="img-responsive">
+                </a>
+                 <figcaption class="thumbnail" style="width:300px;">
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="{% url 'purchase:add' item.id %}">
+                        <span class="glyphicon glyphicon-shopping-cart " style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="{% url 'purchase:like' item.id %}">
+                        <span class="glyphicon glyphicon-thumbs-up" style="font-size:30px;"></span>
+                     </a>
+                     &nbsp;&nbsp;&nbsp;
+                     <a href="{% url 'purchase:favorite' item.id %}">
                         <span class="glyphicon glyphicon-star-empty" style="font-size:30px;"></span>
                      </a>
                      &nbsp;&nbsp;&nbsp;
@@ -75,4 +119,5 @@
         </div>
     {% endfor %}
 </section>
+
 {% endblock %}

@@ -79,7 +79,7 @@
                             <li><a href="#">Sports, Fitness & Outdoors</a></li>
                             <li><a href="#">Clothing & Accessories</a></li>
                             <li><a href="#">Watches & Eyewears</a></li>
-                            <li><a href="#">Shoes</a></li>
+                            <li><a href="{% url 'purchase:item' %}#c8">Shoes</a></li>
                         </ul>
                     </div>
                     
@@ -103,9 +103,9 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li>
-                        <a href="{% url 'purchase:cartdetails' user.id %}">
+                        <a href="{% url 'purchase:cartdetails' %}">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;Your Cart
-                            {{user.cart_set.count}}
+                            <span class="badge">{{user.cart_set.count}}</span>
                         </a>
                     </li>
                     <li>
@@ -117,10 +117,12 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;
                             
                             <ul class="dropdown-menu">
-                                <li><a href="#">Hello, {{user.username}}</a></li>
-                                <li><a href="{% url 'purchase:cartdetails' user.id %}">
-                                    Your Cart {{user.cart_set.count}}</a></li>
-                                <li><a href="#">Settings</a></li>
+                                <li>
+                                    <a href="{% url 'purchase:userprofile' %}">Hello, {{user.username}}</a>
+                                <li>
+                                <li><a href="{% url 'purchase:cartdetails' %}">
+                                    Your Cart <span class="badge">{{user.cart_set.count}}</span></a></li>
+                                <li><a href="{% url 'purchase:usersetting' %}">Settings</a></li>
                                 <li class="divider"></li>
                                 <li><a href="{% url 'purchase:logout' %}">Log Out</a></li>
                             </ul>
