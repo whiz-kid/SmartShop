@@ -3,6 +3,8 @@ Created an E-commerce site using Django Framework. This is just the initial vers
 Requirements:
 
 -> Python
+
 -> Django Framework
+
 -> Mysql client for Python
 
